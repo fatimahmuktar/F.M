@@ -2,7 +2,7 @@
   "name": "api-server",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.mjs",
+    "build": "node build.mjs"
     "start": "node dist/index.js"
   },
   "dependencies": {
