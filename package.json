@@ -2,7 +2,7 @@
   "name": "api-server",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
     "start": "node dist/index.js"
   },
   "dependencies": {
@@ -28,6 +28,6 @@
     "esbuild": "^0.25.0",
     "esbuild-plugin-pino": "^2.3.3",
     "pino-pretty": "^13",
-    "thread-stream": "3.1.0"
+    "thread-stream": "^3.1.0"
   }
 }
