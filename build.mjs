@@ -5,28 +5,31 @@ import { build as esbuild } from "esbuild";
 import esbuildPluginPino from "esbuild-plugin-pino";
 import { rm } from "node:fs/promises";
 
-// Plugins (e.g. 'esbuild-plugin-pino') may use `require` to resolve dependencies
-globalThis.require = createRequire(import.meta.url);
+// Plugins (e.g. 'esbuild-plugin-pino') may use require to resolve dependencies
+globalThis.require = createRequire(fileURLToPath(import.meta.url));
 
-const artifactDir = path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function buildAll() {
-  const distDir = path.resolve(artifactDir, "dist");
+  const distDir = path.resolve(__dirname, "dist");
   await rm(distDir, { recursive: true, force: true });
 
   await esbuild({
-    entryPoints: [path.resolve(artifactDir, "src/index.ts")],
+    entryPoints: [path.resolve(__dirname, "src/index.ts")],
     platform: "node",
     bundle: true,
     format: "esm",
     outdir: distDir,
     outExtension: { ".js": ".mjs" },
     logLevel: "info",
-    // Some packages may not be bundleable, so we externalize them, we can add more here as needed.
-    // Some of the packages below may not be imported or installed, but we're adding them in case they are in the future.
-    // Examples of unbundleable packages:
-    // - uses native modules and loads them dynamically (e.g. sharp)
-    // - use path traversal to read files (e.g. @google-cloud/secret-manager loads sibling .proto files)
+    // Resolve @workspace aliases to local paths
+    alias: {
+      "@workspace/db": path.resolve(__dirname, "../../lib/db/src/index.ts"),
+      "@workspace/db/schema": path.resolve(__dirname, "../../lib/db/src/schema.ts"),
+      "@workspace/api-zod": path.resolve(__dirname, "../../lib/api-zod/src/index.ts"),
+    },
+    // Some packages may not be bundleable, so we externalize them
     external: [
       "*.node",
       "sharp",
@@ -43,6 +46,36 @@ async function buildAll() {
       "utf-8-validate",
       "ssh2",
       "cpu-features",
+      "netcdf4",
+      "gl",
+      "jpeg-turbo",
+      "gdal-async",
+      "node-gd",
+      "iconv",
+      "java",
+      "node-sass",
+      "nodegit",
+      "oniguruma",
+      "lzma-native",
+      "zstd-codec",
+      "gc-stats",
+      "node-pty",
+      "utp-native",
+      "sodium-native",
+      "node-jq",
+      "rdkafka",
+      "node-lzo",
+      "node-zopfli",
+      "iltorb",
+      "nodejieba",
+      "unix-dgram",
+      "syslog",
+      "raw-socket",
+      "pcap",
+      "telnet",
+      "node-icu-charset-detector",
+      "node-expat",
+      "xml2json",
       "dtrace-provider",
       "isolated-vm",
       "lightningcss",
@@ -85,7 +118,6 @@ async function buildAll() {
       "piscina",
       "realm",
       "ref-napi",
-      "rocksdb",
       "sass-embedded",
       "sequelize",
       "serialport",
@@ -103,19 +135,19 @@ async function buildAll() {
     ],
     sourcemap: "linked",
     plugins: [
-      // pino relies on workers to handle logging, instead of externalizing it we use a plugin to handle it
-      esbuildPluginPino({ transports: ["pino-pretty"] })
+      // pino relies on workers to handle logging, instead of externalizing it
+      esbuildPluginPino({ transports: ["pino-pretty"] }),
     ],
-    // Make sure packages that are cjs only (e.g. express) but are bundled continue to work in our esm output file
+    // Make sure packages that are cjs only (e.g. express) but are bundled correctly
     banner: {
-      js: `import { createRequire as __bannerCrReq } from 'node:module';
-import __bannerPath from 'node:path';
-import __bannerUrl from 'node:url';
+      js: `import { createRequire as _bannerCrReq } from 'node:module';
+import _bannerPath from 'node:path';
+import _bannerUrl from 'node:url';
 
-globalThis.require = __bannerCrReq(import.meta.url);
-globalThis.__filename = __bannerUrl.fileURLToPath(import.meta.url);
-globalThis.__dirname = __bannerPath.dirname(globalThis.__filename);
-    `,
+globalThis.require = _bannerCrReq(import.meta.url);
+globalThis.__filename = _bannerUrl.fileURLToPath(import.meta.url);
+globalThis.__dirname = _bannerPath.dirname(globalThis.__filename);
+`,
     },
   });
 }
