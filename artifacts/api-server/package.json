@@ -1,0 +1,35 @@
+{
+  "name": "neu-api",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2",
+    "drizzle-orm": "^0.36.0",
+    "express": "^5",
+    "jsonwebtoken": "^9.0.3",
+    "pino": "^9",
+    "pino-http": "^10",
+    "resend": "^6.12.3",
+    "zod": "^3.0.0",
+    "better-sqlite3": "^9.0.0",
+    "@workspace/db": "file:../../lib/db",
+    "@workspace/api-zod": "file:../../lib/api-zod"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
+    "esbuild-plugin-pino": "^2.3.3",
+    "pino-pretty": "^13",
+    "thread-stream": "^3.1.0"
+  }
+}
