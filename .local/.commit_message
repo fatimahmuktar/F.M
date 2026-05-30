@@ -1,0 +1,15 @@
+Fix attendance report + extend QR rotation to 5 minutes
+
+QR code:
+- TOKEN_WINDOW_SECONDS: 120s → 300s (5 minutes) in session-token.ts
+- Progress bar calculation updated to match (/ 300 instead of / 120)
+
+Attendance Report page (full rewrite):
+- Was reading from localStorage (always empty) — now calls API
+- Loads enrolled courses via apiGetStudentCourses()
+- Loads attendance records via apiGetStudentAttendance(studentId)
+- Loads all sessions via apiGetSessions() to build present/absent history
+- Shows real per-session records: date, time, method, recordedAt, flagged
+- Falls back gracefully when no sessions exist yet
+- Shows loading spinner while fetching
+- Real attendance % based on actual DB data
