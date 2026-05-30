@@ -23,11 +23,11 @@ async function buildAll() {
     outdir: distDir,
     outExtension: { ".js": ".mjs" },
     logLevel: "info",
-    // Resolve @workspace aliases to local paths
+    // Resolve @workspace aliases to dist paths (TypeScript definitions)
     alias: {
-      "@workspace/db": path.resolve(__dirname, "../../lib/db/src/index.ts"),
-      "@workspace/db/schema": path.resolve(__dirname, "../../lib/db/src/schema.ts"),
-      "@workspace/api-zod": path.resolve(__dirname, "../../lib/api-zod/src/index.ts"),
+      "@workspace/db": path.resolve(__dirname, "../../lib/db/dist/index.d.ts"),
+      "@workspace/db/schema": path.resolve(__dirname, "../../lib/db/dist/schema/index.d.ts"),
+      "@workspace/api-zod": path.resolve(__dirname, "../../lib/api-zod/dist/index.d.ts"),
     },
     // Some packages may not be bundleable, so we externalize them
     external: [
