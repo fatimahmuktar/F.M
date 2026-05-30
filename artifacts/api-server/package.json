@@ -16,9 +16,7 @@
     "pino-http": "^10",
     "resend": "^6.12.3",
     "zod": "^3.0.0",
-    "better-sqlite3": "^9.0.0",
-    "@workspace/db": "file:../../lib/db",
-    "@workspace/api-zod": "file:../../lib/api-zod"
+    "better-sqlite3": "^9.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
