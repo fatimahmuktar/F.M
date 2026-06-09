@@ -148,8 +148,8 @@ fi
 # --- Fix import patterns in all copied server files (recursive) ---
 # Only rewrite schema imports to @workspace/db. Leave other @shared/ imports
 # (auth, models, utils) for the agent — they need to go to different packages.
-find artifacts/api-server/src/ -name "*.ts" -exec sed -i 's|from "../../shared/schema"|from "@workspace/db"|g' {} + 2>/dev/null || true
-find artifacts/api-server/src/ -name "*.ts" -exec sed -i "s|from '../../shared/schema'|from '@workspace/db'|g" {} + 2>/dev/null || true
+find artifacts/api-server/src/ -name "*.ts" -exec sed -i 's|from "../../shared/schema"||from "../../lib/db" + 2>/dev/null || true
+find artifacts/api-server/src/ -name "*.ts" -exec sed -i "s|from '../../shared/schema'|from "../../lib/db" || true
 find artifacts/api-server/src/ -name "*.ts" -exec sed -i 's|from "@shared/schema"|from "@workspace/db"|g' {} + 2>/dev/null || true
 find artifacts/api-server/src/ -name "*.ts" -exec sed -i "s|from '@shared/schema'|from '@workspace/db'|g" {} + 2>/dev/null || true
 # Flag any remaining @shared/ or ../../shared/ imports the agent needs to fix

@@ -1,0 +1,69 @@
+ Volume in drive C is OS
+ Volume Serial Number is 0071-A23F
+
+ Directory of C:\Users\fatim\Downloads\Pyt\Python-Web-Design
+
+31/05/2026  07:52    <DIR>          .
+25/05/2026  15:35    <DIR>          ..
+24/05/2026  22:26    <DIR>          .config
+24/05/2026  22:35    <DIR>          .local
+30/05/2026  19:57    <DIR>          .replit-artifact
+24/05/2026  22:35    <DIR>          artifacts
+31/05/2026  00:21             4,107 build.mjs
+31/05/2026  07:43        10,599,794 files.txt
+24/05/2026  22:35    <DIR>          lib
+30/05/2026  19:57               895 package.json
+31/05/2026  07:25                46 pnpm-workspace.yaml
+31/05/2026  07:52                 0 project_info.txt
+31/05/2026  07:41         7,367,552 project_structure.txt
+31/05/2026  07:52         7,367,611 project_tree.txt
+30/05/2026  19:57    <DIR>          scripts
+30/05/2026  19:57    <DIR>          src
+30/05/2026  19:57               232 tsconfig.json
+               8 File(s)     25,340,237 bytes
+               9 Dir(s)  14,262,128,640 bytes free
+ 
+===== PACKAGE.JSON ===== 
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2",
+    "drizzle-orm": "^0.36.0",
+    "express": "^5",
+    "jsonwebtoken": "^9.0.3",
+    "pino": "^9",
+    "pino-http": "^10",
+    "resend": "^6.12.3",
+    "zod": "^3.0.0",
+    "better-sqlite3": "^9.0.0",
+    "@workspace/db": "workspace:*",
+    "@workspace/api-zod": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
+    "esbuild-plugin-pino": "^2.3.3",
+    "pino-pretty": "^13",
+    "thread-stream": "^3.1.0"
+  }
+}
+ 
+===== NPM SCRIPTS ===== 
+Lifecycle scripts included in api-server@1.0.0:
+  start
+    node dist/index.js
+available via `npm run`:
+  build
+    node build.mjs

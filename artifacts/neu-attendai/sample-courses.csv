@@ -1,0 +1,9 @@
+id,name,instructor,room,days,startTime,endTime,enrollment
+COM382,Software Engineering II,Dr. Ahmet Yilmaz,LB-04,Fri,13:30,15:00,45
+COM352,Web Development,Dr. Mehmet Demir,LB-03,Mon,10:00,11:30,50
+COM421,Machine Learning,Dr. Ali Kaya,B-201,Wed,13:30,15:00,35
+AII202,Artificial Intelligence,Prof. Zeynep Celik,LB-02,Mon,13:30,15:00,40
+MAT101,Calculus I,Dr. Fatma Yildiz,A-101,Tue,09:00,11:00,60
+PHY101,Physics I,Dr. Mustafa Ozdemir,B-101,Thu,10:00,12:00,55
+ENG101,English for Academic Purposes,Dr. Susan White,D-101,Wed,09:00,10:30,70
+HIS101,History of Modern Turkey,Dr. Ahmet Polat,D-201,Fri,10:00,12:00,65
